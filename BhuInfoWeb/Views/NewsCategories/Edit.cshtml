@@ -1,0 +1,98 @@
+﻿@using BhuInfo.Data.Objects.Entities
+@model BhuInfo.Data.Objects.Entities.NewsCategory
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@{
+    ViewBag.HeaderClass = "page-header";
+
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+}
+@{
+    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+}
+<div class="container">
+    <div class="header-bottom">
+        <div class="type">
+            <h5>Category Management</h5>
+        </div>
+        <span class="menu"></span>
+        <div class="list-nav">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News")">News</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "NewsCategories")" class="active">News Category</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Events")">Events</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Advertisements")">Advertisment</a>
+                </li>
+            </ul>
+        </div>
+        <!-- script for menu -->
+        <script>
+            $("span.menu")
+                .click(function() {
+                    $(".list-nav")
+                        .slideToggle("slow",
+                            function() {
+                                // Animation complete.
+                            });
+                });
+        </script>
+        <!-- script for menu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="form-horizontal">
+                                <hr/>
+                                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                                @Html.HiddenFor(model => model.NewsCategoryId)
+                                @Html.Hidden("createdby", Model.CreatedById)
+                                @Html.Hidden("date", Model.DateCreated)
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
+                            <input type="submit" value="Save" class="btn btn-primary pull-right"/>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

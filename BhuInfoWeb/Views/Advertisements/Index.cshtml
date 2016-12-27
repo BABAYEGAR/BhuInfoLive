@@ -1,0 +1,171 @@
+﻿@using BhuInfo.Data.Objects.Entities
+@using BhuInfo.Data.Service.Encryption
+@using BhuInfo.Data.Service.Enums
+@model IEnumerable<BhuInfo.Data.Objects.Entities.Advertisement>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    ViewBag.HeaderClass = "page-header";
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+}
+@{
+    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+}
+<div class="container">
+    <div class="header-bottom">
+        <div class="type">
+            <h5>User Management</h5>
+        </div>
+        <span class="menu"></span>
+        <div class="list-nav">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News")">News</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Events")">Events</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Advertisements")" class="active">Advertisment</a>
+                </li>
+            </ul>
+        </div>
+        <!-- script for menu -->
+        <script>
+            $("span.menu")
+                .click(function() {
+                    $(".list-nav")
+                        .slideToggle("slow",
+                            function() {
+                                // Animation complete.
+                            });
+                });
+        </script>
+        <!-- script for menu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["advert"] != null)
+                    {
+                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+                        {
+                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+                        {
+                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+                        {
+                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                    }
+                    @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+                    {
+                        <p>
+                            @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-success"})
+                        </p>
+                    }
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover advert">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AdvertCompanyName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AdvertType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AccessCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>Action</th>
+                                @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+                                {
+                                    <th>Enable/Disable</th>
+                                }
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AdvertCompanyName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AdvertType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AccessCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AdvertisementId.ToString(), true)}, new {@class = "btn btn-primary"}) |
+                                        @Html.ActionLink("Details", "Details", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AdvertisementId.ToString(), true)}, new {@class = "btn btn-default"})
+                                    </td>
+                                    @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AdvertisementId.ToString(), true)}, new {@class = "btn btn-danger"})
+                                            @Html.ActionLink("Enable", "EnableOrDisableAdvert", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AdvertisementId.ToString(), true), actionType = AdvertStatus.Enable.ToString()}, new {@class = "btn btn-success"}) |
+                                            @Html.ActionLink("Disable", "EnableOrDisableAdvert", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AdvertisementId.ToString(), true), actionType = AdvertStatus.Disable.ToString()}, new {@class = "btn btn-danger"})|
+
+                                        </td>
+                                    }
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/JqueryPlugins/ui/drilldown.js"></script>
+    <script src="~/JqueryPlugins/ui/nicescroll.min.js"></script>
+    <script src="~/JqueryPlugins/ui/moment/moment.min.js"></script>
+    <script src="~/JqueryPlugins/datatables/datatables.min.js"></script>
+
+    <script>
+        $(document)
+            .ready(function() {
+                $('.advert').dataTable();
+            });
+    </script>
+}

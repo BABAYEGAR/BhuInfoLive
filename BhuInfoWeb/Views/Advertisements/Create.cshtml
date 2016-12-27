@@ -1,0 +1,177 @@
+﻿@using BhuInfo.Data.Objects.Entities
+@using BhuInfo.Data.Service.Enums
+@model BhuInfo.Data.Objects.Entities.Advertisement
+@{
+    ViewBag.Title = "Create";
+    ViewBag.HeaderClass = "page-header";
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+}
+@{
+    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+}
+@section css{
+    <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+<div class="container">
+    <div class="header-bottom">
+        <div class="type">
+            <h5>User Management</h5>
+        </div>
+        <span class="menu"></span>
+        <div class="list-nav">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News")">News</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Events")">Events</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Advertisements")" class="active">Advertisment</a>
+                </li>
+            </ul>
+        </div>
+        <!-- script for menu -->
+        <script>
+            $("span.menu")
+                .click(function() {
+                    $(".list-nav")
+                        .slideToggle("slow",
+                            function() {
+                                // Animation complete.
+                            });
+                });
+        </script>
+        <!-- script for menu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="col-md-12">
+                    @if (TempData["advert"] != null)
+                    {
+                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+                        {
+                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+                        {
+                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+                        {
+                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                        }
+                    }
+                    @using (Html.BeginForm("Create", "Advertisements", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form"}))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                        <div class="form-horizontal">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.AdvertCompanyName, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.TextBoxFor(model => model.AdvertCompanyName, new {@class = "form-control", placeholder = "Enter a company name"})
+                                        @Html.ValidationMessageFor(model => model.AdvertCompanyName, "", new {@class = "text-danger"})
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.AdvertType, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.DropDownList("AdvertType", EnumHelper.GetSelectList(typeof(AdvertType)), "select an advert type", new {@class = "form-control select-dropdown"})
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.TextBoxFor(model => model.Email, new {@class = "form-control", placeholder = "Enter an email"})
+                                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.StartDate, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.TextBoxFor(model => model.StartDate, new {@class = "form-control startDate", placeholder = "select a start date"})
+                                        @Html.ValidationMessageFor(model => model.StartDate, "", new {@class = "text-danger"})
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.EndDate, new {@class = "control-label col-md-3"})
+                                    <div class="col-sm-6 col-md-9">
+                                        @Html.TextBoxFor(model => model.EndDate, new {@class = "form-control endDate", placeholder = "Select an end date"})
+                                        @Html.ValidationMessageFor(model => model.EndDate, "", new {@class = "text-danger"})
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index", "Advertisements")" class="btn btn-default">Cancel</a>
+                                <input type="submit" value="Create" class="btn btn-primary pull-right"/>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script src="~/Scripts/plugins/Form/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document)
+            .ready(function() {
+
+                // Init select2 for dropdown select
+                $('.select-dropdown').select2();
+                // init datepicker for start date
+                $('.startDate').datepicker();
+
+                // init datepicker for start date
+                $('.endDate').datepicker();
+
+                // init datepicker for date
+                $('.startDate').datepicker({ 'endDate': new Date() });
+
+                // set start date of end date based on selected start date
+                $('.startDate')
+                    .datepicker()
+                    .on('changeDate',
+                        function (e) {
+
+                            // apply selected date as start date for expiry
+                            $('.endDate').datepicker('setStartDate', e.date);
+                        });
+
+            })
+    </script>
+}

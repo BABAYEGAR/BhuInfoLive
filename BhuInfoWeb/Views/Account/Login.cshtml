@@ -1,0 +1,108 @@
+﻿@using BhuInfo.Data.Service.Enums
+@using BhuInfoWeb.Models
+@model BhuInfo.Data.Objects.Entities.AppUser
+@{
+    ViewBag.Title = "Sign-In";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+}
+@section css{
+    <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
+}
+<div class="container">
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <section id="loginForm">
+                                @using (Html.BeginForm("AppLogin", "Account", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    if (TempData["login"] != null)
+                                    {
+                                        <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["login"]</div>
+                                    }
+                                    if (TempData["password"] != null)
+                                    {
+                                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+                                        {
+                                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["password"]</div>
+                                        }
+                                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+                                        {
+                                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["password"]</div>
+                                        }
+                                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+                                        {
+                                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["password"]</div>
+                                        }
+                                    }
+                                    if (TempData["student"] != null)
+                                    {
+                                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+                                        {
+                                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["student"]</div>
+                                        }
+                                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+                                        {
+                                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["student"]</div>
+                                        }
+                                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+                                        {
+                                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["student"]</div>
+                                        }
+                                    }
+                                    <h4 style="font-weight: bolder">Bhu-Info Account Sign-In.</h4>
+                                    <hr/>
+                                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                                    <div class="form-group col-md-12">
+                                        @Html.LabelFor(m => m.Email, new {@class = "col-md-3 control-label"})
+                                        <div class="col-sm-6 col-md-9">
+                                            @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                                            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.LabelFor(m => m.Password, new {@class = "col-md-3 control-label"})
+                                        <div class="col-sm-6 col-md-9">
+                                            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="submit" value="Log in" class="btn btn-login pull-right" aria-hidden="True"/>
+                                    </div>
+                                    <p>
+                                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                    </p>
+                                }
+                            </section>
+                        </div>
+                        <div class="col-md-4">
+                            <section id="socialLoginForm">
+                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel {ReturnUrl = ViewBag.ReturnUrl})
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/plugins/Form/js/select2.min.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+
+                // Init select2 for dropdown select
+                $('.select-dropdown').select2();
+
+            })
+    </script>
+}

@@ -1,0 +1,188 @@
+﻿@using BhuInfo.Data.Context.DataContext
+@using BhuInfo.Data.Objects.Entities
+@using BhuInfo.Data.Service.Encryption
+@model BhuInfo.Data.Objects.Entities.Advertisement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    ViewBag.HeaderClass = "page-header";
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+
+    var db = new AppUserDataContext();
+}
+@{
+    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+}
+<div class="container">
+    <div class="header-bottom">
+        <div class="type">
+            <h5>User Management</h5>
+        </div>
+        <span class="menu"></span>
+        <div class="list-nav">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "News")">News</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Events")">Events</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Advertisements")" class="active">Advertisment</a>
+                </li>
+            </ul>
+        </div>
+        <!-- script for menu -->
+        <script>
+            $("span.menu")
+                .click(function() {
+                    $(".list-nav")
+                        .slideToggle("slow",
+                            function() {
+                                // Animation complete.
+                            });
+                });
+        </script>
+        <!-- script for menu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.AdvertCompanyName)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.AdvertCompanyName)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </div>
+
+                            <div class="col-md-9 ">
+                                @Html.DisplayFor(model => model.Title)
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </div>
+
+                            <div class="col-md-9 ">
+
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.AdvertText)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.AdvertText)
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.AdvertType)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.AdvertType)
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.Status)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.AccessCode)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.AccessCode)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.DateCreated)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.DateCreated)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayNameFor(model => model.DateLastModified)
+                            </div>
+
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.DateLastModified)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayName("Created By")
+                            </div>
+
+                            <div class="col-md-9">
+                                @db.AppUsers.Find(Model.CreatedById).DisplayName
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-3 detailsDiv">
+                                @Html.DisplayName("Last ModifiedBy")
+                            </div>
+
+                            <div class="col-md-9">
+                                @db.AppUsers.Find(Model.LastModifiedById).DisplayName
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Edit", "Edit", new {id = new Md5Ecryption().EncryptPrimaryKey(Model.AdvertisementId.ToString(), true)}, new {@class = "btn btn-primary pull-right"})
+                    @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
