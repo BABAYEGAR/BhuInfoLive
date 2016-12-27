@@ -97,10 +97,10 @@
                                 <label style="color: green">
                                     <i class="fa fa-thumbs-up">
                                         @Ajax.ActionLink("Like", "LikeOrDislikeANewsComments", "News", new {Id = item.NewsCommentId, actionType = NewsActionType.Like.ToString()}, new AjaxOptions
-                                        {
-                                            HttpMethod = "Post",
-                                            UpdateTargetId = "likeOrDislikeDiv"
-                                        })
+                                   {
+                                       HttpMethod = "Post",
+                                       UpdateTargetId = "likeOrDislikeDiv"
+                                   },new {id = "like"})
                                     </i>
                                 </label>
                             }
@@ -121,12 +121,12 @@
                             if (loggedinuser != null)
                             {
                                 <label style="color: red">
-                                    <i class="fa fa-thumbs-down">
+                                    <i class="fa fa-thumbs-down" >
                                         @Ajax.ActionLink("Dislike", "LikeOrDislikeANewsComments", "News", new {Id = item.NewsCommentId, actionType = NewsActionType.Dislike.ToString()}, new AjaxOptions
-                                        {
-                                            HttpMethod = "Post",
-                                            UpdateTargetId = "likeOrDislikeDiv"
-                                        })
+                                   {
+                                       HttpMethod = "Post",
+                                       UpdateTargetId = "likeOrDislikeDiv"
+                                   },new {id = "dislike" })
                                     </i>
 
                                 </label>

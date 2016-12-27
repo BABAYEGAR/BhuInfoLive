@@ -257,16 +257,6 @@
             Session["newsmodel"] = Model;
             <label>Please <a href="@Url.Action("Login", "Account", new {Id = Model.NewsId})" style="color: blue"> Sign In</a> to comment on this article</label>
         }
-        <script type="text/javascript">
-
-            function ClearInputField() {
-                document.getElementById('submitComment')
-                    .onClick({
-                    
-                    });
-            }
-
-        </script>
         <div class="comments1" id="commentDiv">
             @{
                 Html.RenderPartial("Comment", Model);
@@ -402,6 +392,28 @@
                         3000);
 
                 });
+                $('#like')
+             .click(function () {
+                 $(function () {
+                     setInterval(function () {
+                         $('#commentDiv')
+                             .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
+                     },
+                         3000);
+                 });
+
+             });
+                $('#dislike')
+        .click(function () {
+            $(function () {
+                setInterval(function () {
+                    $('#commentDiv')
+                        .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
+                },
+                    3000);
+            });
+
+        });
                 $('#submitComment')
                     .click(function() {
                         $(function() {
