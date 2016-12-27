@@ -42,8 +42,8 @@
         var commentBy = new AppUserFactory().GetAppUserById((int) item.AppUserId);
         if (loggedinuser != null)
         {
-            statusCheckForLike = dbd.CommentStatuses.ToList().FirstOrDefault(n => (n.CommentId == item.NewsCommentId) && (n.LoggedInUserId == loggedinuser.AppUserId) && (n.Status == NewsActionType.Like.ToString()));
-            statusCheckForDislike = dbd.CommentStatuses.ToList().FirstOrDefault(n => (n.CommentId == item.NewsCommentId) && (n.LoggedInUserId == loggedinuser.AppUserId) && (n.Status == NewsActionType.Dislike.ToString()));
+            statusCheckForLike = dbd.CommentStatuses.ToList().SingleOrDefault(n => (n.CommentId == item.NewsCommentId) && (n.LoggedInUserId == loggedinuser.AppUserId) && (n.Status == NewsActionType.Like.ToString()));
+            statusCheckForDislike = dbd.CommentStatuses.ToList().SingleOrDefault(n => (n.CommentId == item.NewsCommentId) && (n.LoggedInUserId == loggedinuser.AppUserId) && (n.Status == NewsActionType.Dislike.ToString()));
         }
 
         <div id="refresh">

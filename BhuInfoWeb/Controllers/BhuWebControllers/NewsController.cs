@@ -272,23 +272,83 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
         public ActionResult LikeOrDislikeANewsComments(long Id, string actionType)
         {
             var newsComments = _dbc.NewsComments.Find(Id);
+            var allNewsCommentsStatus = _dbd.CommentStatuses.ToList();
+            bool checkLike = false;
+            bool checkDislike = false;
             CommentStatus status = new CommentStatus();
             if (ModelState.IsValid)
             {
                 var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-                if (actionType == NewsActionType.Like.ToString())
+                if (loggedinuser != null)
                 {
-                    newsComments.Likes = newsComments.Likes + 1;
-                    status.CommentId = newsComments.NewsCommentId;
-                    if (loggedinuser != null) status.LoggedInUserId = loggedinuser.AppUserId;
-                    status.Status = NewsActionType.Like.ToString();
-                }
-                else if (actionType == NewsActionType.Dislike.ToString())
-                {
-                    newsComments.Dislikes = newsComments.Dislikes + 1;
-                    status.CommentId = newsComments.NewsCommentId;
-                    if (loggedinuser != null) status.LoggedInUserId = loggedinuser.AppUserId;
-                    status.Status = NewsActionType.Dislike.ToString();
+                    var checkLikeNewsStatus =
+                        allNewsCommentsStatus.SingleOrDefault(
+                            n =>
+                                n.LoggedInUserId == loggedinuser.AppUserId &&
+                                n.Status == NewsActionType.Like.ToString() && n.CommentId == Id);
+                    var checkDisLikeNewsStatus =
+                        allNewsCommentsStatus.SingleOrDefault(
+                            n =>
+                                n.LoggedInUserId == loggedinuser.AppUserId &&
+                                n.Status == NewsActionType.Dislike.ToString() && n.CommentId == Id);
+                    //compare for like status
+                    if (actionType == NewsActionType.Like.ToString() && checkLikeNewsStatus != null)
+                    {
+
+
+                    }
+                    if (actionType == NewsActionType.Like.ToString() &&
+                        (checkLikeNewsStatus == null && checkDisLikeNewsStatus == null))
+                    {
+                        newsComments.Likes = newsComments.Likes + 1;
+                        status.CommentId = newsComments.NewsCommentId;
+                        status.LoggedInUserId = loggedinuser.AppUserId;
+                        status.Status = NewsActionType.Like.ToString();
+
+                    }
+                    if (actionType == NewsActionType.Dislike.ToString() && checkLikeNewsStatus != null)
+                    {
+                        newsComments.Dislikes = newsComments.Dislikes + 1;
+                        newsComments.Likes = newsComments.Likes - 1;
+                        status.CommentId = newsComments.NewsCommentId;
+                        status.LoggedInUserId = loggedinuser.AppUserId;
+                        status.Status = NewsActionType.Dislike.ToString();
+                        checkDislike = true;
+                    }
+                    if (actionType == NewsActionType.Dislike.ToString() &&
+                        (checkLikeNewsStatus == null && checkDisLikeNewsStatus == null))
+                    {
+                        newsComments.Dislikes = newsComments.Dislikes + 1;
+                        status.CommentId = newsComments.NewsCommentId;
+                        status.LoggedInUserId = loggedinuser.AppUserId;
+                        status.Status = NewsActionType.Dislike.ToString();
+                    }
+
+
+                    //compare for dislike status
+                    if (actionType == NewsActionType.Like.ToString() && checkDisLikeNewsStatus != null)
+                    {
+                        newsComments.Dislikes = newsComments.Dislikes - 1;
+                        newsComments.Likes = newsComments.Likes + 1;
+                        status.CommentId = newsComments.NewsId;
+                        status.LoggedInUserId = loggedinuser.AppUserId;
+                        status.Status = NewsActionType.Like.ToString();
+                        checkLike = true;
+
+                    }
+                    if (actionType == NewsActionType.Dislike.ToString() && checkDisLikeNewsStatus != null)
+                    {
+                    }
+                    if (checkDislike)
+                    {
+                        _dbd.CommentStatuses.Remove(checkLikeNewsStatus);
+                        _dbd.SaveChanges();
+                    }
+                    if (checkLike)
+                    {
+                        _dbd.CommentStatuses.Remove(checkDisLikeNewsStatus);
+                        _dbd.SaveChanges();
+                    }
                 }
                 _dbc.Entry(newsComments).State = EntityState.Modified;
                 _dbc.SaveChanges();

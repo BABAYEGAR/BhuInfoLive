@@ -1,4 +1,5 @@
 ﻿@using BhuInfo.Data.Factory.BusinessFactory
+@using BhuInfo.Data.Objects.Entities
 @using BhuInfo.Data.Service.DateTimeHelper
 @using BhuInfo.Data.Service.Encryption
 @using BhuInfo.Data.Service.Enums
@@ -6,8 +7,8 @@
 @model IEnumerable<BhuInfo.Data.Objects.Entities.News>
 @{
     ViewBag.Title = "Home";
-    var newsList = new NewsDataFactory().GetTopNthPopularNews(4);
-    var news = newsList.ToList();
+    var newsList = new NewsDataFactory().GetTopNthPopularNews(2);
+    var popular = newsList as IList<News> ?? newsList.ToList();
     Session["newsmodel"] = null;
 
     var list = new NewsDataFactory().GetLatestNewsByCategory(NewsCategoryEnum.Announcement, 4);
@@ -25,7 +26,7 @@
     var fullFrameAdvert = new AdvertsiementFactory().GetAdvertByType(AdvertType.FullFrameAdvert.ToString());
     var halfFrameAdvert = new AdvertsiementFactory().GetAdvertByType(AdvertType.BasicFrameAdvert.ToString());
 
-    var recentNews = Model.Take(6);
+    var recentNews = Model.Take(4);
 }
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -306,7 +307,7 @@ catch (ArgumentOutOfRangeException)
     @try
     {
         <h5 class="head">Popular</h5>
-        foreach (var item in news)
+        foreach (var item in popular)
         {
             <a href="@Url.Action("ViewNewsDetails", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)})">
                 <div class="editor text-center">
