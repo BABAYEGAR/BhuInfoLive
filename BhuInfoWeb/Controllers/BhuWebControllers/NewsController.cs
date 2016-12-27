@@ -330,7 +330,7 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                     {
                         newsComments.Dislikes = newsComments.Dislikes - 1;
                         newsComments.Likes = newsComments.Likes + 1;
-                        status.CommentId = newsComments.NewsId;
+                        status.CommentId = newsComments.NewsCommentId;
                         status.LoggedInUserId = loggedinuser.AppUserId;
                         status.Status = NewsActionType.Like.ToString();
                         checkLike = true;
