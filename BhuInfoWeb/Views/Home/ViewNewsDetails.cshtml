@@ -4,6 +4,7 @@
 @using BhuInfo.Data.Service.Encryption
 @using BhuInfo.Data.Service.Enums
 @using BhuInfo.Data.Service.TextFormatter
+@using NPOI.SS.Formula.Functions
 @model BhuInfo.Data.Objects.Entities.News
 @{
     Session["newsmodel"] = null;
@@ -174,7 +175,7 @@
     }
 
     <p  class="ptext">
-        @(Model.Content)
+        @( Model.Content)
     </p>
     <label id="likeOrDislikeDiv">
         @{

@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.IO;
+using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Xsl;
 
 namespace BhuInfo.Data.Service.TextFormatter
 {
@@ -23,6 +26,30 @@ namespace BhuInfo.Data.Service.TextFormatter
         public static string StripUnicodeCharactersFromString(string inputValue)
         {
             return Regex.Replace(inputValue, @"[^\u0000-\u007F]", string.Empty);
+        }
+        public string ConvertToText(string html)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlDocument xsl = new XmlDocument();
+            xmlDoc.LoadXml(html.ToString());
+            xsl.CreateEntityReference("nbsp");
+            xsl.Load(System.Web.HttpContext.Current.Server.MapPath("~/Markdown.xslt"));
+
+            //creating xslt
+            XslTransform xslt = new XslTransform();
+            xslt.Load(xsl, null, null);
+
+            //creating stringwriter
+            StringWriter writer = new System.IO.StringWriter();
+
+            //Transform the xml.
+            xslt.Transform(xmlDoc, null, writer, null);
+
+            //return string
+            var text = writer.ToString();
+            writer.Close();
+
+            return text;
         }
     }
 }
