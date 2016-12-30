@@ -80,30 +80,9 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                         news.Dislikes = 0;
                         news.NewsView = 0;
                         news.LastModifiedById = user.AppUserId;
-                        if (firstImage.FileName != "")
-                        {
-                            news.Image = new FileUploader().UploadFile(firstImage, UploadType.NewsImage);
-                        }
-                        else
-                        {
-                            news.Image = null;
-                        }
-                        if (secondImage.FileName != "")
-                        {
-                            news.SecondImage = new FileUploader().UploadFile(secondImage, UploadType.NewsImage);
-                        }
-                        else
-                        {
-                            news.SecondImage = null;
-                        }
-                        if (thirdImage.FileName != "")
-                        {
-                            news.ThirdImage = new FileUploader().UploadFile(thirdImage, UploadType.NewsImage);
-                        }
-                        else
-                        {
-                            news.ThirdImage = null;
-                        }
+                        news.Image = firstImage.FileName != "" ? new FileUploader().UploadFile(firstImage, UploadType.NewsImage) : null;
+                        news.SecondImage = secondImage.FileName != "" ? new FileUploader().UploadFile(secondImage, UploadType.NewsImage) : null;
+                        news.ThirdImage = thirdImage.FileName != "" ? new FileUploader().UploadFile(thirdImage, UploadType.NewsImage) : null;
                         _db.News.Add(news);
                         _db.SaveChanges();
                         TempData["news"] = "The article has been created Succesfully!";
@@ -170,8 +149,8 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                     news.Dislikes = int.Parse(collectedValues["dislikes"]);
                     news.LastModifiedById = user.AppUserId;
                     news.Image = collectedValues["image"];
-                    news.SecondImage = collectedValues["secondimage"];
-                    news.ThirdImage = collectedValues["thirdimage"];
+                    news.SecondImage = news.SecondImage != null ? collectedValues["secondimage"] : null;
+                    news.ThirdImage = news.ThirdImage != null ? collectedValues["thirdimage"] : null;
                     _db.Entry(news).State = EntityState.Modified;
                     _db.SaveChanges();
                     TempData["news"] = "This article has been modified Succesfully!";

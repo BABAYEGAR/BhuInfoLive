@@ -53,11 +53,11 @@
                             <p style="text-align: justify">
                                 @if (item.Content.Length > 50)
                                 {
-                                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")</p>
+                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content,true).Substring(0, 80) + "...")</p>
                                 }
                                 else
                                 {
-                                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content))</p>
+                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true))</p>
                                 }
 
                             </p>
@@ -82,11 +82,11 @@
                             <p style="text-align: justify">
                                 @if (item.Content.Length > 50)
                                 {
-                                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")</p>
+                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true).Substring(0, 80) + "...")</p>
                                 }
                                 else
                                 {
-                                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content))</p>
+                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true))</p>
                                 }
 
                             </p>
@@ -99,35 +99,7 @@
     catch (ArgumentOutOfRangeException)
     {
     }
-    <div class="article">
-        @if (Model != null)
-            {
-            <div class="article">
-                <h5 class="head"></h5>
-                @foreach (var item in fashionNews)
-                {
-                    <h6>@item.NewsCategory.Name </h6>
-                        <a class="title" href="@Url.Action("ViewNewsDetails", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)})">@item.Title </a>
-                        <a href="@Url.Action("ViewNewsDetails", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)})">
-                            <img src="~/UploadedFiles/@UploadType.NewsImage/@item.Image" alt="" />
-                        </a>
-                        <div>
-                            <p style="text-align: justify">
-                                @if (item.Content.Length > 50)
-                                {
-                                <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")</p>
-                                }
-                                else
-                                {
-                                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content))</p>
-                                }
 
-                                </p>
-                            </div>
-                }
-            </div>
-        }
-    </div>
 
 </div>
 
@@ -145,7 +117,7 @@
                             <h3>@item.Title</h3>
                             if (item.Content.Length > 50)
                             {
-                                <p style="font-family: verdana">@(new RemoveCharacters().RemoveSpecialCharacters((new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")))</p>
+                                <p style="font-family: verdana">@(new RemoveCharacters().RemoveSpecialCharacters(new RemoveCharacters().RemoveHtmlTags(item.Content, true).Substring(0, 80) + "..."))</p>
                             }
                             else
                             {
@@ -253,20 +225,10 @@
 <div class="clearfix"></div>
 @if ((fullFrameAdvert.StartDate < DateTime.Now) && (fullFrameAdvert.EndDate > DateTime.Now))
 {
-    if (fullFrameAdvert.AdvertImage != null)
-    {
-        <div class="features img-responsive" style="background: url('../../UploadedFiles/Advert/@fullFrameAdvert.AdvertImage') no-repeat 0 0;">
-            <h5>@fullFrameAdvert.AdvertCompanyName</h5>
-            <h2>@fullFrameAdvert.Title</h2>
-        </div>
-    }
-    else
-    {
-        <div class="features img-responsive" style="background: url('../../UploadedFiles/NewsImage/131176526274722376.jpg') no-repeat 0 0;">
-            <h5>@fullFrameAdvert.AdvertCompanyName</h5>
-            <h2>@fullFrameAdvert.Title</h2>
-        </div>
-    }
+    <div class="features img-responsive" style="background: url('../../UploadedFiles/NewsImage/@fullFrameAdvert') no-repeat 0 0;">
+        <h5>@fullFrameAdvert.AdvertCompanyName</h5>
+        <h2>@fullFrameAdvert.Title</h2>
+    </div>
 }
 else
 {
@@ -290,11 +252,11 @@ else
                 </a>
                 if (item.Content.Length > 50)
                 {
-                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")</p>
+                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true).Substring(0, 80) + "...")</p>
                 }
                 else
                 {
-                    <p>@(new RemoveCharacters().RemoveSpecialCharacters(item.Content))</p>
+                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true))</p>
                 }
             }
         </div>
@@ -314,11 +276,11 @@ catch (ArgumentOutOfRangeException)
                     <h3>@item.Title</h3>
                     @if (item.Content.Length > 40)
                     {
-                        <p style="font-family: verdana">@(new RemoveCharacters().RemoveSpecialCharacters(item.Content).Substring(0, 80) + "...")</p>
+                        <p style="font-family: verdana">@(new RemoveCharacters().RemoveHtmlTags(item.Content, true).Substring(0, 80) + "...")</p>
                     }
                     else
                     {
-                        <p style="font-family: verdana">@(new RemoveCharacters().RemoveSpecialCharacters(item.Content))</p>
+                        <p style="font-family: verdana">@(new RemoveCharacters().RemoveHtmlTags(item.Content, true))</p>
                     }
                     <label style="font-weight: bold">
                         @(new DateTimeCalculator().TimeAgo(item.DateCreated))

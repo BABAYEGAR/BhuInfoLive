@@ -1,4 +1,5 @@
-﻿@using BhuInfo.Data.Factory.BusinessFactory
+﻿@using System.Text.RegularExpressions
+@using BhuInfo.Data.Factory.BusinessFactory
 @using BhuInfo.Data.Objects.Entities
 @using BhuInfo.Data.Service.DateTimeHelper
 @using BhuInfo.Data.Service.Encryption
@@ -31,6 +32,8 @@
     var orderDiscussions = discussions.OrderByDescending(n => n.DiscussionView);
     var countedDiscussions = orderDiscussions.Take(5);
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+
+   
 }
 
 @{
@@ -46,29 +49,6 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.3.1/jssocials.css"/>
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.3.1/jssocials-theme-flat.css"/>
 }
-<style>
-    ul > li {
-        /*display: none;*/
-        list-style-type: none;
-    }
-
-/*ul#lazy-container {
-        height: 800px;
-        overflow: auto;
-    }
-
-    ::-webkit-scrollbar { width: 12px; }
-
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-    }*/
-</style>
 
 <div class="container">
 <div class="content">
@@ -173,10 +153,10 @@
     {
         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="">
     }
-
-    <p  class="ptext">
-        @( Model.Content)
+    <p class="ptext">
+        @(new RemoveCharacters().RemoveHtmlTags(Model.Content,true))
     </p>
+  
     <label id="likeOrDislikeDiv">
         @{
             @Html.Partial("_LikeOrDislikePartial", Model)
@@ -195,13 +175,15 @@
 <div class="col-md-7 single-content-left">
     <div class="features-list">
         <h3>Trending Discussion Topics</h3>
-        @foreach (var item in countedDiscussions)
-        {
-            <label style="font-weight: bold;">
-                <a style="color: #000" href="@Url.Action("Activity", "SchoolDiscussions", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.SchoolDiscussionId.ToString(), true)})">@item.Topic</a>
-            </label>
-            <br/>
-        }
+        <ul>
+            @foreach (var item in countedDiscussions)
+            {
+                <li>
+                    <a style="color: #000" href="@Url.Action("Activity", "SchoolDiscussions", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.SchoolDiscussionId.ToString(), true)})">@item.Topic</a>
+                </li>
+                
+            }
+        </ul>
     </div>
     <div class="single">
         <div class="leave">
@@ -390,7 +372,7 @@
                                 .load('@Url.Action("ReloadLikeDislikeInfo", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
 
                         },
-                        3000);
+                        1000);
 
                 });
                 $('#like')
@@ -422,7 +404,7 @@
                                     $('#commentDiv')
                                         .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
                                 },
-                                3000);
+                                1000);
                             $('#commentText').val('');
 
                         });
