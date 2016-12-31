@@ -105,14 +105,14 @@ namespace BhuInfo.Data.Service.TextFormatter
             xsl.Load(System.Web.HttpContext.Current.Server.MapPath("~/Markdown.xslt"));
 
             //creating xslt
-            XslTransform xslt = new XslTransform();
+            var xslt = new XslCompiledTransform();
             xslt.Load(xsl, null, null);
 
             //creating stringwriter
             StringWriter writer = new System.IO.StringWriter();
 
             //Transform the xml.
-            xslt.Transform(xmlDoc, null, writer, null);
+           // xslt.Transform(xmlDoc, null, writer, null);
 
             //return string
             var text = writer.ToString();

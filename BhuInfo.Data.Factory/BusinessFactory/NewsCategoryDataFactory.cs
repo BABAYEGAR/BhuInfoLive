@@ -17,5 +17,11 @@ namespace BhuInfo.Data.Factory.BusinessFactory
             var newsCategories = db.NewsCategories.ToList();
             return newsCategories;
         }
+
+        public NewsCategory GetNewsCategory(long id)
+        {
+            var category = db.NewsCategories.Find(id);
+            return category;
+        }
     }
 }
