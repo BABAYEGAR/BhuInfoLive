@@ -14,57 +14,9 @@
     var db = new AppUserDataContext();
 }
 @{
-    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
-<div class="container">
-    <div class="header-bottom">
-        <div class="type">
-            <h5>User Management</h5>
-        </div>
-        <span class="menu"></span>
-        <div class="list-nav">
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "AppUsers")" class="active">Users</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "News")">News</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Events")">Events</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Advertisements")">Advertisment</a>
-                </li>
-            </ul>
-        </div>
-        <!-- script for menu -->
-        <script>
-            $("span.menu")
-                .click(function() {
-                    $(".list-nav")
-                        .slideToggle("slow",
-                            function() {
-                                // Animation complete.
-                            });
-                });
-        </script>
-        <!-- script for menu -->
 
-        <div class="clearfix"></div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="panel panel-flat">
-
-            <div class="panel-body">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group col-md-12">
@@ -175,8 +127,3 @@
                     @Html.ActionLink("Edit", "Edit", new {id = new Md5Ecryption().EncryptPrimaryKey(Model.AppUserId.ToString(), true)}, new {@class = "btn btn-primary pull-right"})
                     @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
                 </div>
-
-            </div>
-        </div>
-    </div>
-</div>

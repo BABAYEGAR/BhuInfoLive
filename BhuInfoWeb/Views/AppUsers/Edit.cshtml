@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
 }
 @{
-    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 @section css{
     <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
@@ -15,56 +15,6 @@
     ViewBag.HeaderClass = "page-header";
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
 }
-<div class="container">
-    <div class="header-bottom">
-        <div class="type">
-            <h5>User Management</h5>
-        </div>
-        <span class="menu"></span>
-        <div class="list-nav">
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "AppUsers")" class="active">Users</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "News")">News</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Events")">Events</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Advertisements")">Advertisment</a>
-                </li>
-            </ul>
-        </div>
-        <!-- script for menu -->
-        <script>
-            $("span.menu")
-                .click(function() {
-                    $(".list-nav")
-                        .slideToggle("slow",
-                            function() {
-                                // Animation complete.
-                            });
-                });
-        </script>
-        <!-- script for menu -->
-
-        <div class="clearfix"></div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="panel panel-flat">
-
-            <div class="panel-body">
-                <div class="col-md-12">
                     @using (Html.BeginForm("Edit", "AppUsers", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form"}))
                     {
                         @Html.AntiForgeryToken()
@@ -137,11 +87,6 @@
                             </div>
                         </div>
                     }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @section scripts{
     <script src="~/Scripts/plugins/Form/js/select2.min.js"></script>
     <script src="~/Scripts/fileinput.js"></script>

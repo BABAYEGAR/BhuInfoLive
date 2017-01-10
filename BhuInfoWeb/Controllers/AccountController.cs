@@ -68,7 +68,7 @@ namespace BhuInfoWeb.Controllers
                     }
                     Session["bhuinfologgedinuser"] = appUser;
                     TempData["login"] = "Welcome " + appUser.DisplayName + "!";
-                    return RedirectToAction("Index", "AppUsers");
+                    return RedirectToAction("Dashboard", "Home");
                 }
                 if (appUser.Role == UserType.Manager.ToString())
                 {
@@ -125,7 +125,7 @@ namespace BhuInfoWeb.Controllers
                     }
                     Session["bhuinfologgedinuser"] = appUser;
                     TempData["login"] = "Welcome " + appUser.DisplayName + "!";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Dashboard", "Home");
                 }
             }
             TempData["login"] = "Check your login details and make sure you selected the correct user type!";

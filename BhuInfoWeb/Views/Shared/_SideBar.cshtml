@@ -1,0 +1,85 @@
+﻿@using BhuInfo.Data.Objects.Entities
+@using BhuInfo.Data.Service.Enums
+@{
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+}
+@if (loggedinuser != null)
+{
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href="@Url.Action("Dashboard", "Home")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            </li>
+            @if (loggedinuser.Role == UserType.Administrator.ToString())
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo1" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "AppUsers")">Add New User</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "AppUsers")">Users</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if ((loggedinuser.Role == UserType.Administrator.ToString()) || (loggedinuser.Role == UserType.Manager.ToString()))
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-newspaper-o"></i> News <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo2" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "News")">Add New News</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "News")">News</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (loggedinuser.Role == UserType.Administrator.ToString())
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-hacker-news"></i> News Category <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo3" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "NewsCategories")">Add News Category</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "NewsCategories")">News Categories</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if ((loggedinuser.Role == UserType.Administrator.ToString()) || (loggedinuser.Role == UserType.Manager.ToString()))
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-calendar"></i>Events <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo4" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "Events")">Add New Events</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Events")">Events</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if ((loggedinuser.Role == UserType.Administrator.ToString()) || (loggedinuser.Role == UserType.Manager.ToString()))
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-ticket"></i>Discussion <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo5" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "SchoolDiscussions")">Add New Topic</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "SchoolDiscussions")">Topics</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+}

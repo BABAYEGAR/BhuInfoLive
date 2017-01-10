@@ -23,6 +23,11 @@ namespace BhuInfoWeb.Controllers
             var news = new NewsDataFactory().GetTopNthMostRecentNews(5);
             return View(news);
         }
+        public ActionResult Dashboard()
+        {
+            var news = new NewsDataFactory().GetTopNthMostRecentNews(5);
+            return View(news);
+        }
 
         public ActionResult About()
         {

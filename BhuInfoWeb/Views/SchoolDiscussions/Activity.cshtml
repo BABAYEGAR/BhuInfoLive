@@ -85,15 +85,15 @@
                 {
                     if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
                     {
-                        <p class="alert-success alert-dismissable" style="height: 30px">@TempData["activity"]</p>
+                        <p class="alert-success alert-dismissable"  >@TempData["activity"]</p>
                     }
                     else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
                     {
-                        <p class="alert-danger alert-dismissable" style="height: 30px">@TempData["activity"]</p>
+                        <p class="alert-danger alert-dismissable"  >@TempData["activity"]</p>
                     }
                     else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
                     {
-                        <p class="alert-info alert-dismissable" style="height: 30px">@TempData["activity"]</p>
+                        <p class="alert-info alert-dismissable"  >@TempData["activity"]</p>
                     }
                 }
 

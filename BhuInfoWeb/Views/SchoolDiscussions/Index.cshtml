@@ -36,15 +36,15 @@
     {
         if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
         {
-            <p class="alert-success alert-dismissable" style="height: 30px">@TempData["discussion"]</p>
+            <p class="alert-success alert-dismissable"  >@TempData["discussion"]</p>
         }
         else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
         {
-            <p class="alert-danger alert-dismissable" style="height: 30px">@TempData["discussion"]</p>
+            <p class="alert-danger alert-dismissable"  >@TempData["discussion"]</p>
         }
         else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
         {
-            <p class="alert-info alert-dismissable" style="height: 30px">@TempData["discussion"]</p>
+            <p class="alert-info alert-dismissable"  >@TempData["discussion"]</p>
         }
     }
     <div class="content">

@@ -6,155 +6,100 @@
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
 }
 @{
-    Layout = "~/Views/Shared/_LayoutViewDetails.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
     ViewBag.Title = "Create";
 }
 @section css{
     <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
     <link href="~/AppTheme/fileinput.css" rel="stylesheet"/>
 }
-<div class="container">
-    <div class="header-bottom">
-        <div class="type">
-            <h5>User Management</h5>
-        </div>
-        <span class="menu"></span>
-        <div class="list-nav">
-            <ul>
-                <li>
-                    <a href="@Url.Action("Index", "AppUsers")" class="active">Users</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "News")">News</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "NewsCategories")">News Category</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Events")">Events</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "SchoolDiscussions")">Discussions</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "Advertisements")">Advertisment</a>
-                </li>
-            </ul>
-        </div>
-        <!-- script for menu -->
-        <script>
-            $("span.menu")
-                .click(function() {
-                    $(".list-nav")
-                        .slideToggle("slow",
-                            function() {
-                                // Animation complete.
-                            });
-                });
-        </script>
-        <!-- script for menu -->
+@if (TempData["user"] != null)
+{
+    if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+    {
+        <div class="alert-success alert-dismissable">@TempData["user"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+    {
+        <div class="alert-danger alert-dismissable">@TempData["user"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+    {
+        <div class="alert-info alert-dismissable">@TempData["user"]</div>
+    }
+}
+@using (Html.BeginForm("Create", "AppUsers", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form"}))
+{
+    @Html.AntiForgeryToken()
 
-        <div class="clearfix"></div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="panel panel-flat">
-
-            <div class="panel-body">
-                <div class="col-md-12">
-                    @if (TempData["user"] != null)
-                    {
-                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
-                        {
-                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["user"]</div>
-                        }
-                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
-                        {
-                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["user"]</div>
-                        }
-                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
-                        {
-                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["user"]</div>
-                        }
-                    }
-                    @using (Html.BeginForm("Create", "AppUsers", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form"}))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-                            <div class="col-md-8">
-                                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-                                <div class="form-group col-md-12">
-                                    @Html.LabelFor(model => model.Firstname, new {@class = "control-label col-md-3 col-sm-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.EditorFor(model => model.Firstname, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Firstname, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    @Html.LabelFor(model => model.Lastname, new {@class = "control-label col-md-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.EditorFor(model => model.Lastname, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Lastname, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-3 col-sm-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    @Html.LabelFor(model => model.Mobile, new {@class = "control-label col-md-3 col-sm-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.EditorFor(model => model.Mobile, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Mobile, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    @Html.LabelFor(model => model.Role, new {@class = "control-label col-md-3 col-sm-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.DropDownList("Role", EnumHelper.GetSelectList(typeof(UserType)), "select a user role", new {@class = "form-control select-dropdown", id = "Role"})
-                                    </div>
-
-                                </div>
-                                <div class="form-group col-md-12" id="MatricNumber">
-                                    @Html.LabelFor(model => model.MatricNumber, new {@class = "control-label col-md-3 col-sm-3"})
-                                    <div class="col-sm-6 col-md-9">
-                                        @Html.EditorFor(model => model.MatricNumber, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.MatricNumber, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <!-- the avatar markup -->
-                                    <div id="kv-avatar-errors-2" class="center-block" style="display: none; width: 800px;"></div>
-                                    <div class="kv-avatar center-block" style="width: 200px">
-                                        <input id="avatar-2" name="avatar-2" type="file" class="file-loading">
-                                    </div>
-                                    <!-- include other inputs if needed and include a form submit (save) button -->
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="submit" value="Create" class="btn btn-primary pull-right"/>
-                                    <a href="@Url.Action("Index", "AppUsers")" class="btn btn-default">Cancel</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
+    <div class="form-horizontal">
+        <div class="col-md-8">
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Firstname, new {@class = "control-label col-md-3 col-sm-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.EditorFor(model => model.Firstname, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Firstname, "", new {@class = "text-danger"})
                 </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Lastname, new {@class = "control-label col-md-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.EditorFor(model => model.Lastname, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Lastname, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-3 col-sm-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Mobile, new {@class = "control-label col-md-3 col-sm-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.EditorFor(model => model.Mobile, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Role, new {@class = "control-label col-md-3 col-sm-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.DropDownList("Role", EnumHelper.GetSelectList(typeof(UserType)), "select a user role", new {@class = "form-control select-dropdown", id = "Role"})
+                </div>
+
+            </div>
+            <div class="form-group col-md-12" id="MatricNumber">
+                @Html.LabelFor(model => model.MatricNumber, new {@class = "control-label col-md-3 col-sm-3"})
+                <div class="col-sm-6 col-md-9">
+                    @Html.EditorFor(model => model.MatricNumber, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.MatricNumber, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <!-- the avatar markup -->
+                <div id="kv-avatar-errors-2" class="center-block" style="display: none; width: 800px;"></div>
+                <div class="kv-avatar center-block" style="width: 200px">
+                    <input id="avatar-2" name="avatar-2" type="file" class="file-loading">
+                </div>
+                <!-- include other inputs if needed and include a form submit (save) button -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" value="Create" class="btn btn-primary pull-right"/>
+                <a href="@Url.Action("Index", "AppUsers")" class="btn btn-default">Cancel</a>
             </div>
         </div>
     </div>
-</div>
+}
 @section scripts{
     <script src="~/Scripts/plugins/Form/js/select2.min.js"></script>
     <script src="~/Scripts/fileinput.js"></script>

@@ -19,15 +19,15 @@
                     {
                         if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
                         {
-                            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                            <div class="alert-success alert-dismissable"  >@TempData["advert"]</div>
                         }
                         else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
                         {
-                            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                            <div class="alert-danger alert-dismissable"  >@TempData["advert"]</div>
                         }
                         else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
                         {
-                            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["advert"]</div>
+                            <div class="alert-info alert-dismissable"  >@TempData["advert"]</div>
                         }
                     }
                     @using (Html.BeginForm("VerifyAccessCode", "Advertisements", FormMethod.Post))

@@ -13,15 +13,15 @@
     {
         if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
         {
-            <div class="alert-success alert-dismissable" style="height: 30px">@TempData["profile"]</div>
+            <div class="alert-success alert-dismissable"  >@TempData["profile"]</div>
         }
         else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
         {
-            <div class="alert-danger alert-dismissable" style="height: 30px">@TempData["profile"]</div>
+            <div class="alert-danger alert-dismissable"  >@TempData["profile"]</div>
         }
         else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
         {
-            <div class="alert-info alert-dismissable" style="height: 30px">@TempData["profile"]</div>
+            <div class="alert-info alert-dismissable"  >@TempData["profile"]</div>
         }
     }
     <div class="row">
@@ -80,8 +80,8 @@
                             </table>
                             @if ((loggedinuser != null) && (Model.AppUserId == loggedinuser.AppUserId))
                             {
-                                <a href="@Url.Action("Index", "Home")" data-original-title="Return to home page" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">
-                                    <i class="glyphicon glyphicon-backward"></i>
+                                <a href="@Url.Action("Dashboard", "Home")" data-original-title="Return to Dashboard" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-backward"></i>
                                 </a>
                                 <span class="pull-right">
                                 <a href="@Url.Action("EditProfile", "AppUsers", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.AppUserId.ToString(), true)})" data-original-title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
