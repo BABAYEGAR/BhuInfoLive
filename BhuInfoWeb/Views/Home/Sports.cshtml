@@ -4,7 +4,7 @@
 @using BhuInfo.Data.Service.Encryption
 @using BhuInfo.Data.Service.Enums
 @using BhuInfo.Data.Service.TextFormatter
-@model IEnumerable<News>
+@model IEnumerable<BhuInfo.Data.Objects.Entities.News>
 @{
     ViewBag.Title = "Sports";
     Session["newsmodel"] = null;
@@ -69,13 +69,13 @@
                                 @if (loggedinuser != null)
                                 {
                                     <p>
-                                        Posted by <a href="@Url.Action("ProfileDetails", "Account", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.CreatedById.ToString(), true)})">@(new AppUserFactory().GetAppUserById((int)item.CreatedById).DisplayName);</a> @(new DateTimeCalculator().TimeAgo(item.DateCreated))
+                                        Posted by <a href="@Url.Action("ProfileDetails", "Account", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.CreatedById.ToString(), true)})">@(new AppUserFactory().GetAppUserById((int) item.CreatedById).DisplayName);</a> @(new DateTimeCalculator().TimeAgo(item.DateCreated))
                                     </p>
                                 }
                                 else
                                 {
                                     <p>
-                                        Posted by <a>@(new AppUserFactory().GetAppUserById((int)item.CreatedById).DisplayName);</a> @(new DateTimeCalculator().TimeAgo(item.DateCreated))
+                                        Posted by <a>@(new AppUserFactory().GetAppUserById((int) item.CreatedById).DisplayName);</a> @(new DateTimeCalculator().TimeAgo(item.DateCreated))
                                     </p>
                                 }
                                 @if (item.Content.Length > 40)

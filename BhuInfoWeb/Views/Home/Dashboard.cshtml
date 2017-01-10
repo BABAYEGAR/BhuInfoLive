@@ -1,14 +1,13 @@
 ﻿@using BhuInfo.Data.Context.DataContext
 @using BhuInfo.Data.Objects.Entities
 @using BhuInfo.Data.Service.Enums
-
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 
     var comments = new NewsComentDataContext().NewsComments.ToList().Count;
     var events = new EventDataContext().Events.Where(n => n.DateCreated > DateTime.Now).ToList();
-    var upcomingEvents = new EventDataContext().Events.Where(n=>n.DateCreated > DateTime.Now).ToList().Count;
+    var upcomingEvents = new EventDataContext().Events.Where(n => n.DateCreated > DateTime.Now).ToList().Count;
     var news = new NewsDataContext().News.ToList().Count;
     var users = new AppUserDataContext().AppUsers.ToList().Count;
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
@@ -88,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="@Url.Action("AllPastNews","Home")">
+                <a href="@Url.Action("AllPastNews", "Home")">
                     <div class="panel-footer">
                         <span class="pull-left">View complete list</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -110,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="@Url.Action("UpcomingEvent","Home")">
+                <a href="@Url.Action("UpcomingEvent", "Home")">
                     <div class="panel-footer">
                         <span class="pull-left">View complete list</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

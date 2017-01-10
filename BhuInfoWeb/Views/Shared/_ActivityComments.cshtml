@@ -2,7 +2,7 @@
 @using BhuInfo.Data.Objects.Entities
 @using BhuInfo.Data.Service.DateTimeHelper
 @using BhuInfo.Data.Service.Encryption
-@model SchoolDiscussion
+@model BhuInfo.Data.Objects.Entities.SchoolDiscussion
 @{
     var discussionId = Model.SchoolDiscussionId;
 
@@ -27,7 +27,7 @@ else
                     @if (commentBy != null)
                     {
                         <a href="@Url.Action("ProfileDetails", "Account", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true)})">
-                            <img src="../../UploadedFiles/ProfileImage/@commentBy.AppUserImage"  width="85px" height="80px" class="img-responsive" alt="">
+                            <img src="../../UploadedFiles/ProfileImage/@commentBy.AppUserImage" width="85px" height="80px" class="img-responsive" alt="">
                         </a>
                     }
                     else

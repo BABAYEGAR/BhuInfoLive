@@ -1,7 +1,6 @@
 ﻿@using BhuInfo.Data.Objects.Entities
 @using BhuInfo.Data.Service.Encryption
 @using BhuInfo.Data.Service.Enums
-@using BhuInfo.Data.Service.TextFormatter
 @model IEnumerable<BhuInfo.Data.Objects.Entities.News>
 
 @{
@@ -65,8 +64,8 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new {id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)}, new {@class = "btn btn-primary btn-xs"}) |
-                    @Html.ActionLink("Details", "Details", new {id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)}, new {@class = "btn btn-default btn-xs" }) |
-                    @Html.ActionLink("Delete", "Delete", new {id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)}, new {@class = "btn btn-danger btn-xs" })
+                    @Html.ActionLink("Details", "Details", new {id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)}, new {@class = "btn btn-default btn-xs"}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)}, new {@class = "btn btn-danger btn-xs"})
                 </td>
             </tr>
         }

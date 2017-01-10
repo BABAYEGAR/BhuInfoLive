@@ -1,5 +1,4 @@
 ﻿@using BhuInfo.Data.Objects.Entities
-@using BhuInfo.Data.Service.Enums
 @model List<BhuInfo.Data.Objects.Entities.Event>
 
 @{
@@ -15,25 +14,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<header class="@ViewBag.HeaderClass">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            @if ((loggedinuser != null) && (loggedinuser.Role.Equals(UserType.Administrator.ToString()) || loggedinuser.Role.Equals(UserType.Manager.ToString())))
-            {
-                <div class="col-lg-12">
-                    <a href="@Url.Action("Create", "Events")" class="btn btn-success">Create</a>
-                </div>
-            }
-            else
-            {
-                <div class="col-lg-12">
-
-                </div>
-            }
-        </div>
-    </div>
-</header>
 <div class="container">
     <div class="content">
 

@@ -8,76 +8,55 @@
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
 }
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 @section css{
     <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
     <link href="~/Scripts/plugins/ckeditor/contents.css" rel="stylesheet"/>
 }
 
-<header class="@ViewBag.HeaderClass">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                @*<h2 class="tagline">@ViewBag.Title</h2>*@
+@if (TempData["event"] != null)
+{
+    if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+    {
+        <p class="alert-success alert-dismissable">@TempData["event"]</p>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+    {
+        <p class="alert-danger alert-dismissable">@TempData["event"]</p>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+    {
+        <p class="alert-info alert-dismissable">@TempData["event"]</p>
+    }
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Topic, new {@class = "control-label col-md-3"})
+            <div class="col-sm-6 col-md-9">
+                @Html.TextBoxFor(model => model.Topic, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Topic, "", new {@class = "text-danger"})
             </div>
         </div>
-    </div>
-</header>
-<div class="container">
-    <div class="row">
-        <div class="panel panel-flat">
-
-            <div class="panel-body">
-                <div class="col-md-12">
-                    @if (TempData["event"] != null)
-                    {
-                        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
-                        {
-                            <p class="alert-success alert-dismissable"  >@TempData["event"]</p>
-                        }
-                        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
-                        {
-                            <p class="alert-danger alert-dismissable"  >@TempData["event"]</p>
-                        }
-                        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
-                        {
-                            <p class="alert-info alert-dismissable"  >@TempData["event"]</p>
-                        }
-                    }
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-                            <div class="form-group col-md-12">
-                                @Html.LabelFor(model => model.Topic, new {@class = "control-label col-md-3"})
-                                <div class="col-sm-6 col-md-9">
-                                    @Html.TextBoxFor(model => model.Topic, new {@class = "form-control"})
-                                    @Html.ValidationMessageFor(model => model.Topic, "", new {@class = "text-danger"})
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="form-group col-md-12">
-                                @Html.LabelFor(model => model.Content, new {@class = "control-label col-md-3"})
-                                <div class="col-sm-6 col-md-9">
-                                    @Html.TextAreaFor(model => model.Content, new {@class = "form-control", id = "content"})
-                                    @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
-                                <input type="submit" value="Create" class="btn btn-primary pull-right"/>
-                            </div>
-                        </div>
-                    }
-                </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Content, new {@class = "control-label col-md-3"})
+            <div class="col-sm-6 col-md-9">
+                @Html.TextAreaFor(model => model.Content, new {@class = "form-control", id = "content"})
+                @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
             </div>
         </div>
+        <div class="col-md-12">
+            @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
+            <input type="submit" value="Create" class="btn btn-primary pull-right"/>
+        </div>
     </div>
-</div>
+}
 @section scripts{
     <script src="~/Scripts/plugins/Form/js/select2.min.js"></script>
     <script src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>

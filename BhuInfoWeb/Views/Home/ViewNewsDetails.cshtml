@@ -4,7 +4,7 @@
 @using BhuInfo.Data.Service.Encryption
 @using BhuInfo.Data.Service.Enums
 @using BhuInfo.Data.Service.TextFormatter
-@model News
+@model BhuInfo.Data.Objects.Entities.News
 @{
     Session["newsmodel"] = null;
     Session["activitymodel"] = Model;
@@ -32,8 +32,6 @@
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
 
     var modelCategory = new NewsCategoryDataFactory().GetNewsCategory(Model.NewsCategoryId);
-
-   
 }
 
 @{
@@ -63,99 +61,98 @@
     @if (modelCategory.Name != NewsCategoryEnum.Announcement.ToString())
     {
         if ((Model.Image != null) && (Model.SecondImage != null) && (Model.ThirdImage != null))
-         {
-             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                 <!-- Indicators -->
-                 <ol class="carousel-indicators">
-                     <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                     <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-                     <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-                 </ol>
-                 <div class="carousel-inner" role="listbox">
-                     <div class="item active left">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
+        {
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active left">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
 
-                     </div>
-                     <div class="item next left">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.SecondImage" alt="Second slide">
+                    </div>
+                    <div class="item next left">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.SecondImage" alt="Second slide">
 
-                     </div>
-                     <div class="item">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.ThirdImage" alt="Third slide">
+                    </div>
+                    <div class="item">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.ThirdImage" alt="Third slide">
 
-                     </div>
-                 </div>
-                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                 </a>
-                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                 </a>
-             </div>
-         }
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        }
         if ((Model.Image != null) && (Model.SecondImage == null) && (Model.ThirdImage != null))
-         {
-             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                 <!-- Indicators -->
-                 <ol class="carousel-indicators">
-                     <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                     <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-                 </ol>
-                 <div class="carousel-inner" role="listbox">
-                     <div class="item active left">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
+        {
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active left">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
 
-                     </div>
-                     <div class="item">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.ThirdImage" alt="Third slide">
+                    </div>
+                    <div class="item">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.ThirdImage" alt="Third slide">
 
-                     </div>
-                 </div>
-                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                 </a>
-                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                 </a>
-             </div>
-         }
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        }
         if ((Model.Image != null) && (Model.SecondImage != null) && (Model.ThirdImage == null))
-         {
-             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                 <!-- Indicators -->
-                 <ol class="carousel-indicators">
-                     <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                     <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-                 </ol>
-                 <div class="carousel-inner" role="listbox">
-                     <div class="item active left">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
+        {
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active left">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="First slide">
 
-                     </div>
-                     <div class="item next left">
-                         <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.SecondImage" alt="Second slide">
+                    </div>
+                    <div class="item next left">
+                        <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.SecondImage" alt="Second slide">
 
-                     </div>
-                 </div>
-                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                 </a>
-                 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                 </a>
-             </div>
-         }
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        }
         if ((Model.Image != null) && (Model.SecondImage == null) && (Model.ThirdImage == null))
-         {
-             <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="">
-         }
-   
+        {
+            <img height="40" width="40" class="img-responsive" src="../../UploadedFiles/@UploadType.NewsImage/@Model.Image" alt="">
+        }
     }
     <p class="ptext">
         @(new RemoveCharacters().RemoveHtmlTags(Model.Content, true))
@@ -184,7 +181,6 @@
                 <li>
                     <a style="color: #000" href="@Url.Action("Activity", "SchoolDiscussions", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.SchoolDiscussionId.ToString(), true)})">@item.Topic</a>
                 </li>
-                
             }
         </ul>
     </div>
@@ -203,15 +199,15 @@
         {
             if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
             {
-                <p class="alert-success alert-dismissable"  >@TempData["news"]</p>
+                <p class="alert-success alert-dismissable">@TempData["news"]</p>
             }
             else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
             {
-                <p class="alert-danger alert-dismissable"  >@TempData["news"]</p>
+                <p class="alert-danger alert-dismissable">@TempData["news"]</p>
             }
             else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
             {
-                <p class="alert-info alert-dismissable"  >@TempData["news"]</p>
+                <p class="alert-info alert-dismissable">@TempData["news"]</p>
             }
         }
         @if (loggedinuser != null)
@@ -379,27 +375,27 @@
 
                 });
                 $('#like')
-             .click(function () {
-                 $(function () {
-                     setInterval(function () {
-                         $('#commentDiv')
-                             .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
-                     },
-                         1000);
-                 });
+                    .click(function() {
+                        $(function() {
+                            setInterval(function() {
+                                    $('#commentDiv')
+                                        .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
+                                },
+                                1000);
+                        });
 
-             });
+                    });
                 $('#dislike')
-        .click(function () {
-            $(function () {
-                setInterval(function () {
-                    $('#commentDiv')
-                        .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
-                },
-                    1000);
-            });
+                    .click(function() {
+                        $(function() {
+                            setInterval(function() {
+                                    $('#commentDiv')
+                                        .load('@Url.Action("ReloadCompleteView", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(Model.NewsId.ToString(), true)})');
+                                },
+                                1000);
+                        });
 
-        });
+                    });
                 $('#submitComment')
                     .click(function() {
                         $(function() {

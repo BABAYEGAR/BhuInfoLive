@@ -20,15 +20,15 @@
                     {
                         if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
                         {
-                            <p class="alert-success alert-dismissable"  >@TempData["student"]</p>
+                            <p class="alert-success alert-dismissable">@TempData["student"]</p>
                         }
                         else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
                         {
-                            <p class="alert-danger alert-dismissable"  >@TempData["student"]</p>
+                            <p class="alert-danger alert-dismissable">@TempData["student"]</p>
                         }
                         else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
                         {
-                            <p class="alert-info alert-dismissable"  >@TempData["student"]</p>
+                            <p class="alert-info alert-dismissable">@TempData["student"]</p>
                         }
                     }
                     @using (Html.BeginForm("Create", "AppUsers", FormMethod.Post, new {enctype = "multipart/form-data"}))

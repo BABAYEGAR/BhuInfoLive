@@ -16,106 +16,106 @@
 @{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.Firstname)
-                        </div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.Firstname)
+    </div>
 
-                        <div class="col-md-9">
-                            @Html.DisplayFor(model => model.Firstname)
-                        </div>
-                    </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(model => model.Firstname)
+    </div>
+</div>
 
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.Lastname)
-                        </div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.Lastname)
+    </div>
 
-                        <div class="col-md-9 ">
-                            @Html.DisplayFor(model => model.Lastname)
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.Email)
-                        </div>
+    <div class="col-md-9 ">
+        @Html.DisplayFor(model => model.Lastname)
+    </div>
+</div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
 
-                        <div class="col-md-9 ">
+    <div class="col-md-9 ">
 
-                            @Html.DisplayFor(model => model.Email)
-                        </div>
-                    </div>
+        @Html.DisplayFor(model => model.Email)
+    </div>
+</div>
 
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.Mobile)
-                        </div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.Mobile)
+    </div>
 
-                        <div class="col-md-9">
-                            @Html.DisplayFor(model => model.Mobile)
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.Role)
-                        </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(model => model.Mobile)
+    </div>
+</div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.Role)
+    </div>
 
-                        <div class="col-md-9">
-                            @Html.DisplayFor(model => model.Role)
-                        </div>
-                    </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(model => model.Role)
+    </div>
+</div>
 
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.DateCreated)
-                        </div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
 
-                        <div class="col-md-9">
-                            @Html.DisplayFor(model => model.DateCreated)
-                        </div>
-                    </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+</div>
 
-                    <div class="form-group col-md-12">
-                        <div class="col-md-3 detailsDiv">
-                            @Html.DisplayNameFor(model => model.DateLastModified)
-                        </div>
+<div class="form-group col-md-12">
+    <div class="col-md-3 detailsDiv">
+        @Html.DisplayNameFor(model => model.DateLastModified)
+    </div>
 
-                        <div class="col-md-9">
-                            @Html.DisplayFor(model => model.DateLastModified)
-                        </div>
-                    </div>
-                    @if (Model.CreatedById != 0)
-                    {
-                        <div class="form-group col-md-12">
-                            <div class="col-md-3 detailsDiv">
-                                @Html.DisplayName("Created By")
-                            </div>
-
-                            <div class="col-md-9">
-                                @db.AppUsers.Find(Model.CreatedById).DisplayName
-                            </div>
-                        </div>
-                    }
-                    @if (Model.LastModifiedById != 0)
-                    {
-                        <div class="form-group col-md-12">
-                            <div class="col-md-3 detailsDiv">
-                                @Html.DisplayName("Last ModifiedBy")
-                            </div>
-
-                            <div class="col-md-9">
-                                @db.AppUsers.Find(Model.LastModifiedById).DisplayName
-                            </div>
-                        </div>
-                    }
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="row">
-            <div class="col-md-12">
-                <input type="submit" value="Delete" class="btn btn-danger pull-right"/>
-                @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
-            </div>
+    <div class="col-md-9">
+        @Html.DisplayFor(model => model.DateLastModified)
+    </div>
+</div>
+@if (Model.CreatedById != 0)
+{
+    <div class="form-group col-md-12">
+        <div class="col-md-3 detailsDiv">
+            @Html.DisplayName("Created By")
         </div>
-    }
+
+        <div class="col-md-9">
+            @db.AppUsers.Find(Model.CreatedById).DisplayName
+        </div>
+    </div>
+}
+@if (Model.LastModifiedById != 0)
+{
+    <div class="form-group col-md-12">
+        <div class="col-md-3 detailsDiv">
+            @Html.DisplayName("Last ModifiedBy")
+        </div>
+
+        <div class="col-md-9">
+            @db.AppUsers.Find(Model.LastModifiedById).DisplayName
+        </div>
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" value="Delete" class="btn btn-danger pull-right"/>
+            @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-default pull-left"})
+        </div>
+    </div>
+}

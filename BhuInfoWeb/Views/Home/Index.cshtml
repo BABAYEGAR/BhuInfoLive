@@ -53,7 +53,7 @@
                             <p style="text-align: justify">
                                 @if (item.Content.Length > 50)
                                 {
-                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content,true).Substring(0, 80) + "...")</p>
+                                    <p>@(new RemoveCharacters().RemoveHtmlTags(item.Content, true).Substring(0, 80) + "...")</p>
                                 }
                                 else
                                 {
