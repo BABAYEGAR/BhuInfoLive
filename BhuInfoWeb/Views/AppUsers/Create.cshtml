@@ -2,12 +2,10 @@
 @using BhuInfo.Data.Service.Enums
 @model BhuInfo.Data.Objects.Entities.AppUser
 @{
-    ViewBag.HeaderClass = "page-header";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
     ViewBag.Title = "Create";
+    ViewBag.Header = "Users";
+    ViewBag.SubTitle = "Add New User";
 }
 @section css{
     <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>

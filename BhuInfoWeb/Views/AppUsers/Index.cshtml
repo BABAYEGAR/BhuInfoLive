@@ -9,94 +9,96 @@
 @{
     ViewBag.HeaderClass = "page-header";
     var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-}
-@{
-    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
-}
-@section css{
-    <link href="~/Scripts/plugins/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
-}
-@if (TempData["user"] != null)
-{
-    if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
-    {
-        <div class="alert-success alert-dismissable">@TempData["user"]</div>
+    ViewBag.Header = "Users";
+    ViewBag.SubTitle = "List of all users";
     }
-    else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
-    {
-        <div class="alert-danger alert-dismissable">@TempData["user"]</div>
+    @{
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
     }
-    else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
-    {
-        <div class="alert-info alert-dismissable">@TempData["user"]</div>
+    @section css{
+        <link href="~/Scripts/plugins/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     }
-}
-<div class="table-responsive">
-    <table class="table table-condensed table-hover" id="appusers">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Firstname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lastname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mobile)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role).ToString()
-            </th>
-            @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
-            {
-                <th>Action</th>
-            }
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model)
+    @if (TempData["user"] != null)
+    {
+        if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mobile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
-                </td>
-                @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true)}, new {@class = "btn btn-primary btn-xs"}) |
-                        @Html.ActionLink("Details", "Details", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true)}, new {@class = "btn btn-default btn-xs"}) |
-                        @Html.ActionLink("Delete", "Delete", new {id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true)}, new {@class = "btn btn-danger btn-xs"})
-                    </td>
-                }
-            </tr>
+            <div class="alert-success alert-dismissable">@TempData["user"]</div>
         }
-        </tbody>
-    </table>
-</div>
-@section scripts {
+        else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+        {
+            <div class="alert-danger alert-dismissable">@TempData["user"]</div>
+        }
+        else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+        {
+            <div class="alert-info alert-dismissable">@TempData["user"]</div>
+        }
+    }
+    <div class="table-responsive">
+        <table class="table table-condensed table-hover" id="appusers">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Firstname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mobile)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role).ToString()
+                    </th>
+                    @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+            {
+                        <th>Action</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Firstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lastname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </td>
+                        @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+                {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true) }, new { @class = "btn btn-primary btn-xs" }) |
+                                @Html.ActionLink("Details", "Details", new { id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true) }, new { @class = "btn btn-default btn-xs" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = new Md5Ecryption().EncryptPrimaryKey(item.AppUserId.ToString(), true) }, new { @class = "btn btn-danger btn-xs" })
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @section scripts {
 
-    <script src="~/JqueryPlugins/datatables/jquery.dataTables.js"></script>
-    <script src="~/Scripts/plugins/dataTables/js/dataTables.bootstrap.min.js"></script>
-    <script>
-        $(document)
-            .ready(function() {
-                $('#appusers').DataTable();
-            });
+        <script src="~/JqueryPlugins/datatables/jquery.dataTables.js"></script>
+        <script src="~/Scripts/plugins/dataTables/js/dataTables.bootstrap.min.js"></script>
+        <script>
+            $(document)
+                .ready(function () {
+                    $('#appusers').DataTable();
+                });
 
-    </script>
-}
+        </script>
+    }

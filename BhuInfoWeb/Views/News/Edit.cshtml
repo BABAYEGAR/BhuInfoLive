@@ -4,10 +4,9 @@
 
 @{
     ViewBag.Title = "Edit";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "News";
+    ViewBag.SubTitle = "Edit a News";
 }
 @section css{
     <link href="~/Scripts/plugins/ckeditor/contents.css" rel="stylesheet"/>

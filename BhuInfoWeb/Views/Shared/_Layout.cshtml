@@ -15,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/AppTheme/images/bhuinfo.png" type="image/x-icon">
+    <link href="~/Content/creative.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/fonts/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -23,7 +24,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @{
         var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
     }
-    <link href="~/Content/creative.min.css" rel="stylesheet"/>
     <style>
         .navbar {
             border: 1px solid transparent;

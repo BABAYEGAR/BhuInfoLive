@@ -5,10 +5,9 @@
 
 @{
     ViewBag.Title = "Index";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "News";
+    ViewBag.SubTitle = "List Of All News";
 }
 @section css{
     <link href="~/Scripts/plugins/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet"/>

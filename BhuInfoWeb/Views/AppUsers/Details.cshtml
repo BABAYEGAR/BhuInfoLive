@@ -5,16 +5,10 @@
 
 @{
     ViewBag.Title = "Details";
-}
-
-@{
-    ViewBag.HeaderClass = "page-header";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-
     var db = new AppUserDataContext();
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "Users";
+    ViewBag.SubTitle = "User Details";
 }
 
 <div class="row">

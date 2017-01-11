@@ -5,12 +5,10 @@
 
 @{
     ViewBag.Title = "Delete";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-
     var db = new AppUserDataContext();
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "News";
+    ViewBag.SubTitle = "Delete a News";
 }
 <div class="col-md-8">
     <div class="form-group col-md-12">

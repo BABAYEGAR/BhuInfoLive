@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "EditProfile";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "Users";
+    ViewBag.SubTitle = "Edit Profile";
 }
 @section css{
     <link href="~/Scripts/plugins/Form/css/select2.css" rel="stylesheet"/>
     <link href="~/AppTheme/fileinput.css" rel="stylesheet"/>
-}
-@{
-    ViewBag.HeaderClass = "page-header";
 }
 @using (Html.BeginForm("EditProfile", "AppUsers", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {

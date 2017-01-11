@@ -4,16 +4,10 @@
 
 @{
     ViewBag.Title = "Delete";
-}
-@{
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-
     var db = new AppUserDataContext();
-}
-
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
-    ViewBag.Title = "Delete";
+    ViewBag.Header = "Events";
+    ViewBag.SubTitle = "Delete Event";
 }
 
 <div class="col-md-8">

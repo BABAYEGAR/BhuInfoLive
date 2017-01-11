@@ -5,13 +5,10 @@
 
 @{
     ViewBag.Title = "Details";
-
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-
     var db = new AppUserDataContext();
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "News Category";
+    ViewBag.SubTitle = "Details Of News Category";
 }
 <div class="col-md-8">
     <div class="form-group col-md-12">

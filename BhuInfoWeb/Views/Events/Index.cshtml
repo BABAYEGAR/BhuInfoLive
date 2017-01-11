@@ -5,10 +5,9 @@
 
 @{
     ViewBag.Title = "Index";
-    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
-}
-@{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "Events";
+    ViewBag.SubTitle = "List of All Event";
 }
 @section css{
 
