@@ -14,9 +14,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     padding: 5px;
 
 }
-        .navigation ul li a.active { color: #1ac7c3; }
+        .navigation ul li a.active { color: #000099; }
 
-        .navigation ul li a:hover { color: #1ac7c3; }
+        .navigation ul li a:hover { color: #000099; }
 
 .dropdown-user:hover { cursor: pointer; }
 
@@ -159,7 +159,7 @@ label{
 	font-family: 'Antonio-Regular';
 }
 .pages ul li a.active {
-	border-bottom: 30px solid #1ac7c3;
+	border-bottom: 30px solid #000099;
 }
 .header-bottom {
 	border: 1px solid #c1c1c1;
@@ -183,10 +183,10 @@ label{
 	font-weight:300;
 }
 .navigation ul li a.active {
-	color:#1ac7c3;
+	color:#000099;
 }
 .navigation ul li a:hover {
-	color:#1ac7c3;
+	color:#000099;
 }
 .logo {
 	float:left;
@@ -226,10 +226,10 @@ label{
 	font-size:1em;
 }
 .list-nav ul li a.active {
-	  color: #1ac7c3;
+	  color: #000099;
 }
 .list-nav ul li a:hover {
-	color: #1ac7c3;
+	color: #000099;
 }
 .navigation {
 	float:right;
@@ -250,14 +250,14 @@ h5.head {
 	text-transform:uppercase;
 	font-weight:300;
 	font-family: 'Antonio-Regular';
-	background:#1ac7c3;
+	background:#000099;
 	width:40%;
 	padding:7px;
 	text-align:center;
 	margin-top: -1px;
 }
 .article h6 {
-	color: #1ac7c3;
+	color: #000099;
 	font-size: 1.3em;
 	font-weight: 400;
 	margin-left: 1.8em;
@@ -463,7 +463,7 @@ a.title {
 	border-bottom: 1px solid #e6e6e6;
 }
 .about-content h3 {
-	color: #1ac7c3;
+	color: #000099;
 	font-size: 2em;
 	font-weight: 400;
 	font-family: 'Georgia Italic';
@@ -490,7 +490,7 @@ p.Nam {
   font-size: 16px;
   color: #fff;
   font-weight: 300;
-  background: #1ac7c3;
+  background: #000099;
   border-radius: 7px;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -553,7 +553,7 @@ p.comment-form-author {
 .contact-form input[type="submit"] {
 	display: inline-block;
 	padding: 13px 25px;
-	background: #1ac7c3;
+	background: #000099;
 	color: #FFF;
 	font-size: 1em;
 	line-height: 18px;
@@ -630,7 +630,7 @@ p.back{
 	font-size:0.82em;
 }
 h3.c-head {
-  color: #1ac7c3;
+  color: #000099;
   font-size: 2em;
   font-weight: 400;
   font-family: 'Georgia Italic';
@@ -641,7 +641,7 @@ h3.c-head {
 	padding: 2em 1.5em;
 }
 .print-main h3 {
-	color: #1ac7c3;
+	color: #000099;
 	font-size: 2em;
 	font-weight: 400;
 	font-family: 'Georgia Italic';
@@ -691,7 +691,7 @@ a.bhead {
 	font-family: 'Antonio-Regular';
 }
 a.bhead:hover {
-	  color: #1ac7c3;
+	  color: #000099;
 }
 .print-text p {
 	color: #798184;
@@ -703,14 +703,14 @@ a.bhead:hover {
 	margin:0.5em 0;
 }
 .print-text p a{
-	 color: #1ac7c3;
+	 color: #000099;
 }
 a.more {
 	text-decoration:none;
 	color:#000;
 }
 a.more:hover {
-	color: #1ac7c3;
+	color: #000099;
 }
 .print-grids {
 	margin-top:4em;
@@ -733,7 +733,7 @@ img.img-responsive {
 	margin-top:0.4em;
 }
 .error-head h1 span{
-	color: #1ac7c3;
+	color: #000099;
 }
 .error-head h2{
 	font-size: 1.5em;
@@ -817,7 +817,7 @@ p.span a:hover {
 	text-decoration: underline;
 }
 p.span a {
-	color: #1ac7c3;
+	color: #000099;
 	font-size: 1.1em;
 	font-weight: 400;
 	line-height: 1.5em;
@@ -987,7 +987,7 @@ p.span a {
 		font-size: 2.8em;
 	}
 	.pages ul li a.active {
-		border-bottom: 25px solid #1ac7c3;
+		border-bottom: 25px solid #000099;
 	}
 	.pages ul li a {
 		font-size: 1.65em;
@@ -1119,7 +1119,7 @@ p.span a {
 		font-size:1.1em;
 	}
 	.pages ul li a.active {
-		border-bottom: 18px solid #1ac7c3;
+		border-bottom: 18px solid #000099;
 	}
 	.pages ul li a {
 		font-size: 1.5em;
@@ -1218,7 +1218,7 @@ p.span a {
 		margin: 0 0.2em;
 	}
 	.pages ul li a.active {
-		border-bottom: 13px solid #1ac7c3;
+		border-bottom: 13px solid #000099;
 	}
 	.logo a h1 {
 		font-size: 2em;

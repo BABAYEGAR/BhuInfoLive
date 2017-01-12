@@ -242,7 +242,6 @@
     <Content Include="AppTheme\css\._style.css" />
     <Content Include="AppTheme\css\AccountSnippet.css" />
     <Content Include="AppTheme\css\bootstrap.css" />
-    <Content Include="AppTheme\css\sb-admin-2.min.css" />
     <Content Include="AppTheme\css\style.css" />
     <Content Include="AppTheme\fileinput.css" />
     <Content Include="AppTheme\fileinput.min.css" />
