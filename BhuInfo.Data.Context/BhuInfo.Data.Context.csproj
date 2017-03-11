@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\VideoDataContext.cs" />
     <Compile Include="DataContext\AdvertisementDataContext.cs" />
     <Compile Include="DataContext\PasswordResetContext.cs" />
     <Compile Include="DataContext\NewsStatusDataContext.cs" />
@@ -65,9 +66,9 @@
     <Compile Include="DataContext\NewsDataContext.cs" />
     <Compile Include="DataContext\NewsCategoryDataContext.cs" />
     <Compile Include="DataManager\DataManager.cs" />
-    <Compile Include="Migrations\201611131114529_migration1.cs" />
-    <Compile Include="Migrations\201611131114529_migration1.Designer.cs">
-      <DependentUpon>201611131114529_migration1.cs</DependentUpon>
+    <Compile Include="Migrations\201703111855257_Migrate3.cs" />
+    <Compile Include="Migrations\201703111855257_Migrate3.Designer.cs">
+      <DependentUpon>201703111855257_Migrate3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611131114529_migration1.resx">
-      <DependentUpon>201611131114529_migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703111855257_Migrate3.resx">
+      <DependentUpon>201703111855257_Migrate3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

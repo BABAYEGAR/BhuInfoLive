@@ -20,12 +20,12 @@
         <div class="col-md-12 content-right content-right-top">
             <div class="editors-pic-grids">
 
-                <h5 class="head" style="color: #1ac7c3">Upcoming Events</h5>
+                <h5 class="head" style="color: #000099">Upcoming Events</h5>
                 @foreach (var item in oderedEvent)
                 {
                     <div class="editor text-center">
 
-                        <h2 style="color: #1ac7c3; font-family: -apple-system; font-weight: bolder;">@item.EventName</h2>
+                        <h2 style="color: #000099; font-family: -apple-system; font-weight: bolder;">@item.EventName</h2>
                         <label style="color: black">Venue: @item.Venue </label><br/>
                         <label style="color: black">Organizer: @item.Organizer </label><br/>
                         <label style="color: black">Start Date: @item.StartDate.ToShortDateString()</label><br/>

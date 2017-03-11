@@ -1,9 +1,9 @@
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using BhuInfo.Data.Objects.Entities;
 
 namespace BhuInfo.Data.Context.DataContext
 {
-    public class NewsDataContext : DbContext
+    public class VideoDataContext : DbContext
     {
         // Your context has been configured to use a 'NewsCategoryDataContext' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -11,7 +11,7 @@ namespace BhuInfo.Data.Context.DataContext
         // 
         // If you wish to target a different database and/or database provider, modify the 'NewsCategoryDataContext' 
         // connection string in the application configuration file.
-        public NewsDataContext()
+        public VideoDataContext()
             : base("name=BhuInfo")
         {
         }
@@ -19,23 +19,9 @@ namespace BhuInfo.Data.Context.DataContext
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<NewsComment> NewsComments { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<CommentStatus> CommentStatuses { get; set; }
-        public virtual DbSet<ContactUs> ContactUses { get; set; }
-        public virtual DbSet<NewsCategory> NewsCategories { get; set; }
-        public virtual DbSet<Advertisement> Advertisements { get; set; }
-        public virtual DbSet<AppUser> App { get; set; }
-        public virtual DbSet<NewsStatus> NewsStatuses { get; set; }
-        public virtual DbSet<PasswordReset> PasswordResets { get; set; }
-        public virtual DbSet<SchoolDiscussion> SchoolDiscussions { get; set; }
-        public virtual DbSet<SchoolDiscussionComment> SchoolDiscussionComments { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // Database.SetInitializer<NewsDataContext>(null);
-          
         }
     }
 }

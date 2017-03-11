@@ -1,0 +1,57 @@
+﻿@using BhuInfo.Data.Service.Enums
+@model BhuInfo.Data.Objects.Entities.Video
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Header = "News";
+    ViewBag.SubTitle = "Edit Video";
+}
+@if (TempData["video"] != null)
+{
+    if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+    {
+        <div class="alert-success alert-dismissable">@TempData["video"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+    {
+        <div class="alert-danger alert-dismissable">@TempData["video"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+    {
+        <div class="alert-info alert-dismissable">@TempData["video"]</div>
+    }
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.VideoId)
+    @Html.HiddenFor(m=>m.DateCreated)
+    @Html.HiddenFor(m=>m.CreatedById)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-3" })
+            <div class="col-sm-6 col-md-9">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter a news title" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-3" })
+            <div class="col-sm-6 col-md-9">
+                @Html.TextBoxFor(model => model.Link, new { @class = "form-control", placeholder = "Enter a news title" })
+                @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "Videos")" class="btn btn-default">Cancel</a>
+                <input type="submit" value="Update" class="btn btn-primary pull-right" />
+
+            </div>
+        </div>
+    </div>
+}

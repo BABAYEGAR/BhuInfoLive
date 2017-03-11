@@ -50,13 +50,13 @@
 
             <div class="editors-pic-grids">
 
-                <h5 class="head" style="color: #1ac7c3">Discussion Topics</h5>
+                <h5 class="head" style="color: #000099">Discussion Topics</h5>
                 @foreach (var item in Model)
                 {
                     <a href="@Url.Action("Activity", "SchoolDiscussions", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.SchoolDiscussionId.ToString(), true)})">
                         <div class="editor text-center">
 
-                            <h2 style="color: #1ac7c3">@item.Topic</h2>
+                            <h2 style="color: #000099">@item.Topic</h2>
                             <label style="color: black;">@(new DateTimeCalculator().TimeAgo(item.DateCreated))</label><br/>
                             <label style="color: black">@item.DiscussionView views @item.SchoolDiscussionComments.Count Comments</label><br/>
                             @if (item.Status == DiscussionState.Closed.ToString())

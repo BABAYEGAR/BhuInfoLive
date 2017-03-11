@@ -35,6 +35,11 @@ namespace BhuInfoWeb.Controllers
                 new NewsDataFactory().GetTopFiveMostRecentNewsByCategory(NewsCategoryEnum.General.ToString());
             return View(generalNews);
         }
+        public ActionResult Videos()
+        {
+            var videos = _db.Videos.ToList();
+            return View(videos);
+        }
 
         public ActionResult Contact()
         {

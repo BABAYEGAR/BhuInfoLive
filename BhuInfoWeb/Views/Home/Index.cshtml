@@ -223,21 +223,22 @@
     </div>
 </div>
 <div class="clearfix"></div>
-@if ((fullFrameAdvert.StartDate < DateTime.Now) && (fullFrameAdvert.EndDate > DateTime.Now))
-{
-    <div class="features img-responsive" style="background: url('../../UploadedFiles/NewsImage/@fullFrameAdvert') no-repeat 0 0;">
-        <h5>@fullFrameAdvert.AdvertCompanyName</h5>
-        <h2>@fullFrameAdvert.Title</h2>
+    <div class="img-responsive">
+        @if (fullFrameAdvert != null && (fullFrameAdvert.StartDate < DateTime.Now) && (fullFrameAdvert.EndDate > DateTime.Now))
+        {
+            <div class="features img-responsive" style="background: url('../../UploadedFiles/NewsImage/@fullFrameAdvert') no-repeat 0 0;">
+                <h5>@fullFrameAdvert.AdvertCompanyName</h5>
+                <h2>@fullFrameAdvert.Title</h2>
+            </div>
+        }
+        else
+        {
+            <div class="features" style="background: url('../../UploadedFiles/NewsImage/131176526274722376.jpg') no-repeat 0 0;">
+                <h5>BHU</h5>
+                <h2>Welcome To Bingham University...</h2>
+            </div>
+        }
     </div>
-}
-else
-{
-    <div class="features" style="background: url('../../UploadedFiles/NewsImage/131176526274722376.jpg') no-repeat 0 0;">
-        <h5>BHU</h5>
-        <h2>Welcome To Bingham University...</h2>
-    </div>
-}
-
 @try
 {
     <div class="col-md-7 content-left">

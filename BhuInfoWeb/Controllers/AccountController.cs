@@ -89,18 +89,23 @@ namespace BhuInfoWeb.Controllers
                             new {Id = new Md5Ecryption().EncryptPrimaryKey(schoolDiscussionId.ToString(), true)});
                     }
                     Session["bhuinfologgedinuser"] = appUser;
-                    var authTicket = new FormsAuthenticationTicket(
-                        1,
-                        appUser.DisplayName,
-                        DateTime.Now,
-                        DateTime.Now.AddMinutes(20),
-                        appUser.RememberMe,
-                        "", //roles 
-                        "/"
-                    );
-                    //encrypt the ticket and add it to a cookie
-                    HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
-                    Response.Cookies.Add(cookie);
+                    bool remember = Convert.ToBoolean(collectedValues["RememberMe"]);
+                    if (remember)
+                    {
+                        var authTicket = new FormsAuthenticationTicket(
+                            1,
+                            appUser.DisplayName,
+                            DateTime.Now,
+                            DateTime.Now.AddHours(72),
+                            appUser.RememberMe,
+                            "", //roles 
+                            "/"
+                        );
+                        //encrypt the ticket and add it to a cookie
+                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
+                            FormsAuthentication.Encrypt(authTicket));
+                        Response.Cookies.Add(cookie);
+                    }
                     TempData["login"] = "Welcome " + appUser.DisplayName + "!";
                     return RedirectToAction("Index", "News");
                 }

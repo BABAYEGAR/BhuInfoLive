@@ -80,6 +80,20 @@
                     </ul>
                 </li>
             }
+            @if ((loggedinuser.Role == UserType.Administrator.ToString()))
+            {
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-video-camera"></i> Vidoes <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo6" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "Videos")">Add Video</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Videos")">Videos</a>
+                        </li>
+                    </ul>
+                </li>
+            }
         </ul>
     </div>
 }

@@ -1,0 +1,88 @@
+﻿@using BhuInfo.Data.Objects.Entities
+@using BhuInfo.Data.Service.Enums
+@model IEnumerable<BhuInfo.Data.Objects.Entities.Video>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    ViewBag.HeaderClass = "page-header";
+    var loggedinuser = Session["bhuinfologgedinuser"] as AppUser;
+    ViewBag.Header = "Videos";
+    ViewBag.SubTitle = "List of all videos";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+@section css{
+    <link href="~/Scripts/plugins/dataTables/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+}
+@if (TempData["video"] != null)
+{
+    if (TempData["notificationtype"].Equals(NotificationType.Success.ToString()))
+    {
+        <div class="alert-success alert-dismissable">@TempData["video"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Danger.ToString()))
+    {
+        <div class="alert-danger alert-dismissable">@TempData["video"]</div>
+    }
+    else if (TempData["notificationtype"].Equals(NotificationType.Info.ToString()))
+    {
+        <div class="alert-info alert-dismissable">@TempData["videoe"]</div>
+    }
+}
+<div class="table-responsive">
+    <table class="table table-condensed table-hover" id="appusers">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
+            {
+                <th>Action</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link)
+                </td>
+                @if ((loggedinuser != null) && ((loggedinuser.Role == UserType.Administrator.ToString()) || (loggedinuser.Role == UserType.Manager.ToString())))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.VideoId}, new {@class = "btn btn-primary btn-xs"}) |
+                        @if (loggedinuser.Role == UserType.Administrator.ToString())
+                        {
+                            @Html.ActionLink("Details", "Details", new {id = item.VideoId}, new {@class = "btn btn-default btn-xs"})
+                        }
+                        @Html.ActionLink("Delete", "Delete", new {id = item.VideoId}, new {@class = "btn btn-danger btn-xs"})
+                    </td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+
+    <script src="~/JqueryPlugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/plugins/dataTables/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+                $('#appusers').DataTable();
+            });
+
+    </script>
+}

@@ -61,7 +61,7 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                 }
                 else
                 {
-                    TempData["category"] = "Your session has expired,Login and try again!";
+                    TempData["login"] = "Your session has expired,Login and try again!";
                     TempData["notificationtype"] = NotificationType.Danger.ToString();
                     RedirectToAction("Create");
                 }

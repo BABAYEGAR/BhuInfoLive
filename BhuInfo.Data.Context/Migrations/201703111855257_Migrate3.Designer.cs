@@ -7,18 +7,18 @@ namespace BhuInfo.Data.Context.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class migration1 : IMigrationMetadata
+    public sealed partial class Migrate3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migration1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migrate3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611131114529_migration1"; }
+            get { return "201703111855257_Migrate3"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

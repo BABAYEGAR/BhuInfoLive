@@ -122,7 +122,7 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                 }
                 else
                 {
-                    TempData["advert"] = "Your session has expired,Login Again!";
+                    TempData["login"] = "Your session has expired,Login Again!";
                     TempData["notificationtype"] = NotificationType.Info.ToString();
                     return RedirectToAction("Index", "Home");
                 }
@@ -257,7 +257,7 @@ namespace BhuInfoWeb.Controllers.BhuWebControllers
                 else
                 {
                     
-                    TempData["advert"] = "Your session has expired,Login Again!";
+                    TempData["login"] = "Your session has expired,Login Again!";
                     TempData["notificationtype"] = NotificationType.Info.ToString();
                     return RedirectToAction("Login", "Account");
                 }

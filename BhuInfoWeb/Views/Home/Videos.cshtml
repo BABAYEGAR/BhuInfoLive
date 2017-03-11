@@ -1,0 +1,36 @@
+﻿@model List<BhuInfo.Data.Objects.Entities.Video>
+
+@{
+    ViewBag.Title = "Videos";
+    var videos = Model.OrderByDescending(n => n.DateCreated);
+    Session["newsmodel"] = null;
+    Session["activitymodel"] = Model; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    
+</style>
+<div class="container">
+    <div class="content">
+
+        <div class="col-md-12 content-right content-right-top">
+            <div class="editors-pic-grids">
+
+                <h5 class="head" style="color: #000099">Watch Videos</h5>
+                <br/>
+                <br/>
+                @foreach (var item in videos)
+                {
+                    var link = item.Link.Replace("watch?v=", "embed/");
+                     <iframe width="340"
+                             height="315"
+                             src="@link"
+                             frameborder="0"
+                             allowfullscreen></iframe>
+                }
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

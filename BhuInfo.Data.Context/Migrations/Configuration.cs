@@ -9,7 +9,7 @@ namespace BhuInfo.Data.Context.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BhuInfo.Data.Context.DataContext.NewsDataContext context)

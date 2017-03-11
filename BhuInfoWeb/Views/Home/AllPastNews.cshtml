@@ -30,7 +30,7 @@
             <div class="editors-pic-grids">
 
 
-                <h5 class="head" style="color: #1ac7c3">All News News</h5>
+                <h5 class="head" style="color: #000099">All News News</h5>
 
                 @foreach (var item in orderednews)
                 {
@@ -38,7 +38,7 @@
 
                         <a href="@Url.Action("ViewNewsDetails", "Home", new {Id = new Md5Ecryption().EncryptPrimaryKey(item.NewsId.ToString(), true)})">
 
-                            <h2 style="color: #1ac7c3; font-family: -apple-system; font-weight: bolder;">@item.Title</h2>
+                            <h2 style="color: #000099; font-family: -apple-system; font-weight: bolder;">@item.Title</h2>
 
                             <label style="color: black">Posted By: @(new AppUserFactory().GetAppUserById((int) item.CreatedById).DisplayName) </label><br/>
 
