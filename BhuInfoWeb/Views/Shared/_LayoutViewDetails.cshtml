@@ -18,168 +18,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <title>@ViewBag.Title</title>
 
 
-    <div class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="@Url.Action("Index", "Home")">
-                    <h1>
-                        <img src="~/AppTheme/images/bhuinfo.png" width="100" height="50"/>
-                    </h1>
-                </a>
-            </div>
-            @*<div class="pages">
-                <ul>
-                    @if ((loggedinuser != null) && (loggedinuser.Role == UserType.Administrator.ToString()))
-                    {
-                        <li>
-                            <a class="active" href="@Url.Action("Index", "AppUsers")">Admin/Users</a>
-                        </li>
-                    }
-                    else
-                    {
-                        if (ViewBag.Title == "Sign-In")
-                        {
-                            <li>
-                                <a class="active" href="@Url.Action("Login", "Account")">Sign-In</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <a class="active" href="@Url.Action("Index", "AppUsers")">Manager/Users</a>
-                            </li>
-                        }
-                    }
-
-                </ul>
-            </div>*@
-            <div class="navigation">
-                @if (ViewBag.Title == "Sign-In")
-                {
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="@Url.Action("Register", "AppUsers")" style="color: white">Registration</a>
-                        </li>
-                        @if (ViewBag.Title == "Advertisement")
-                        {
-                            <li>
-                                <a href="@Url.Action("VerifyAccessCode", "Advertisements")" class="active">Advertisement</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <a href="@Url.Action("VerifyAccessCode", "Advertisements")" style="color: white">Advertisement</a>
-                            </li>
-                        }
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")" style="color: white">Contact Us</a>
-                        </li>
-
-
-                    </ul>
-                }
-                else
-                {
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")" style="color: white">Contact Us</a>
-                        </li>
-
-                        @if (loggedinuser != null)
-                        {
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <strong>@loggedinuser.Firstname</strong>
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="navbar-login">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <p class="text-center">
-                                                            @if (loggedinuser.AppUserImage == null)
-                                                            {
-                                                                <span class="glyphicon glyphicon-user icon-size"></span>
-                                                            }
-                                                            else
-                                                            {
-                                                                <div class="col-md-3">
-                                                                    <div class="row">
-                                                                        <span class="img-circle img-responsive"><img src="~/UploadedFiles/ProfileImage/@loggedinuser.AppUserImage" width="85px" height="80px" /></span>
-                                                                    </div>
-                                                                </div>
-                                                            }
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <p class="text-left">
-                                                            <strong>@loggedinuser.DisplayName</strong>
-                                                        </p>
-                                                        <p class="text-left small">@loggedinuser.Email</p>
-                                                        @if (loggedinuser.Role == UserType.Administrator.ToString())
-                                                        {
-                                                            <p class="text-left">
-
-                                                                <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-block btn-sm fa fa-home">Home</a>
-                                                            </p>
-                                                        }@if (loggedinuser.Role == UserType.Manager.ToString())
-                                                         {
-                                                             <p class="text-left">
-                                                                 <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-block btn-sm fa fa-home">Home</a>
-                                                             </p>
-                                                         }
-
-                                                        <p class="text-left">
-                                                            <a href="@Url.Action("ProfileDetails", "Account", new {Id = new Md5Ecryption().EncryptPrimaryKey(loggedinuser.AppUserId.ToString(), true)})" class="btn btn-success btn-block btn-sm fa fa-user-secret">Profile</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-
-                                        <li class="navbar-login-session-bg">
-                                            <div class="navbar-login navbar-login-session">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <p>
-                                                            <a href="@Url.Action("LogOut", "Account")" class="btn btn-danger btn-block"><span class="fa fa-user"></span> Logout</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        }
-
-                        else
-                        {
-                            <li>
-                                <a href="@Url.Action("Login", "Account")" style="color: white">Log In</a>
-                            </li>
-                        }
-                    </ul>
-                }
-
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
+    
     @Styles.Render("~/Content/css")
     @Styles.Render("~/fonts/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("css", false)
+    <style>
+        .navbar {
+            border: 1px solid transparent;
+            margin-bottom: 0;
+            min-height: 70px;
+            position: relative;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            color: white;
+            font-family: 'Times-Italic';
+            font-style: italic;
+            font-weight: 300;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+        .navbar-toggle {
+            margin-top: 16px;
+        }
+    </style>
 
 </head>
 <body>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="@Url.Action("Index", "Home")">
+
+                    <h1>
+
+                        <img src="~/AppTheme/images/bhuinfo.png" width="100" height="50" />
+                    </h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="@Url.Action("Register", "AppUsers")" style="color: white">Registration</a>
+                    </li>
+                    @if (ViewBag.Title == "Advertisement")
+                    {
+                        <li>
+                            <a href="@Url.Action("VerifyAccessCode", "Advertisements")" class="active">Advertisement</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("VerifyAccessCode", "Advertisements")" style="color: white">Advertisement</a>
+                        </li>
+                    }
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")" style="color: white">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
 @RenderBody()
 @Scripts.Render("~/bundles/jqueryval")
